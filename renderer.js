@@ -1041,1079 +1041,891 @@ const Director = (function() {
         const targets = new Float32Array(COUNT * 3);
         
         // Shapes
+               // -----------------------------------------------------------
+        // COMPLEX 3D SHAPES DICTIONARY
+        // -----------------------------------------------------------
+                // -----------------------------------------------------------
+        // FUTURISTIC 3D SHAPES DATABASE (35+ Forms)
+        // -----------------------------------------------------------
         const FORMS = {
-    
-        // 1. DYSON SWARM (Dense Orbital Shell)
-    // Thousands of particles orbiting in perfect latitude/longitude rings.
-    // Looks like a futuristic shield generator or planetary defense grid.
-    DYSON_SWARM: (arr) => {
-        const rings = 40; // Number of latitude bands
-        const radius = 100;
-        
-        let idx = 0;
-        for(let ring=0; ring<rings; ring++) {
-            const phi = (ring / rings) * Math.PI; // 0 to PI
-            const particlesPerRing = Math.floor(COUNT / rings);
             
-            // Calculate radius of this specific ring (Sphere slicing)
-            const ringRadius = radius * Math.sin(phi);
-            const y = radius * Math.cos(phi);
-
-            for(let p=0; p<particlesPerRing; p++) {
-                if(idx >= COUNT) break;
-                const theta = (p / particlesPerRing) * Math.PI * 2;
+            // --- MATHEMATICAL CHAOS & ATTRACTORS ---
+            // 2. QUANTUM-HELIX NEXUS (Futuristic Data-Structure)
+            QUANTUM_NEXUS: (arr) => {
+                let x = 0.1, y = 0, z = 0;
+                // Base constants
+                let a = 0.9, b = 0.7;
+                const dt = 0.005; // Higher precision for more detail
                 
-                // Create the ring
-                arr[idx*3] = ringRadius * Math.cos(theta);
-                arr[idx*3+1] = y;
-                arr[idx*3+2] = ringRadius * Math.sin(theta);
+                for(let i = 0; i < COUNT; i++){
+                    // 1. DYNAMIC PARAMETER MODULATION (The shape evolves over time)
+                    // Parameters breathe and shift, creating an evolving "tech" feel
+                    const evolution = Math.sin(i * 0.0005);
+                    const dynamic_a = 0.95 + evolution * 0.1;
+                    const dynamic_b = 0.7 - evolution * 0.05;
+
+                    // 2. COMPLEX DIFFERENTIAL EQUATIONS
+                    // Mixing standard polynomial chaos with trigonometric "crystalline" folding
+                    const dx = (z - dynamic_b) * x - Math.sin(y) * dynamic_a;
+                    const dy = x * dynamic_a + (z - dynamic_b) * y - Math.cos(x) * 0.5;
+                    const dz = 0.6 + dynamic_b * z - (z * z * z) / 3 
+                               - (x * x + y * y) * (1 + evolution * z) 
+                               + 0.25 * z * x * x * x;
+
+                    x += dx * dt;
+                    y += dy * dt;
+                    z += dz * dt;
+
+                    // 3. SPATIAL TRANSFORMATION (Helix Encoding)
+                    // Wrap the chaotic attractor around a double-helix lattice
+                    const angle = i * 0.05; // Tight twisting
+                    const radius = 15 + evolution * 5; // Breathing radius
+                    
+                    // Offset X and Y to create the double-helix rail system
+                    const x_helix = x * 20 + Math.cos(angle) * radius;
+                    const y_helix = y * 20 + Math.sin(angle) * radius;
+                    
+                    // Z acts as the central spine with "noise" from the attractor
+                    const z_spine = z * 50;
+
+                    // 4. "GLITCH" INJECTION (Digital Artifacts)
+                    // Randomly displace points to create a "holographic noise" effect
+                    const glitch = (Math.random() > 0.97) ? Math.random() * 10 : 0;
+
+                    // Output: Mapping the complex 3D structure
+                    arr[i*3]   = x_helix + glitch;      // X
+                    arr[i*3+1] = y_helix + glitch;      // Y
+                    arr[i*3+2] = z_spine - (COUNT*0.25) + i*0.5; // Z (centered vertically)
+                }
+            },
+
+            // 1. AIZAWA ATTRACTOR (Organic Spiral)
+            AIZAWA: (arr) => {
+                let x=0.1, y=0, z=0;
+                const a=0.95, b=0.7, c=0.6, d=3.5, e=0.25, f=0.1;
+                const dt = 0.01;
+                for(let i=0; i<COUNT; i++){
+                    const dx = (z-b)*x - d*y;
+                    const dy = d*x + (z-b)*y;
+                    const dz = c + a*z - (z*z*z)/3 - (x*x+y*y)*(1+e*z) + f*z*x*x*x;
+                    x+=dx*dt; y+=dy*dt; z+=dz*dt;
+                    arr[i*3]=x*50; arr[i*3+1]=y*50; arr[i*3+2]=z*50;
+                }
+            },
+
+            // 2. THOMAS ATTRACTOR (Cyclic Symmetry)
+           // 3. THOMAS CYBERNETIC NEXUS (Self-Weaving Data Tunnel)
+            THOMAS_CYBER: (arr) => {
+                let x = 1.1, y = 1.1, z = -0.01;
+                const dt = 0.04;
                 
-                // Add slight "tech jitter" for a digital feel
-                arr[idx*3] += (Math.random()-0.5)*2;
-                arr[idx*3+2] += (Math.random()-0.5)*2;
+                for(let i = 0; i < COUNT; i++){
+                    // 1. DYNAMIC PARAMETERS (Breathing Effect)
+                    // 'b' oscillates, causing the attractor to shift between chaotic and stable states
+                    const b = 0.208186 + Math.sin(i * 0.002) * 0.025;
+
+                    // 2. ENHANCED DIFFERENTIAL EQUATIONS
+                    // Added cos(z) coupling to dx for sharper, "digital" folding edges
+                    const dx = Math.sin(y) - b * x + Math.cos(z) * 0.15;
+                    const dy = Math.sin(z) - b * y;
+                    const dz = Math.sin(x) - b * z;
+
+                    x += dx * dt;
+                    y += dy * dt;
+                    z += dz * dt;
+
+                    // 3. SPATIAL TRANSFORMATION (The "Möbius Warp")
+                    // We calculate a rotation angle based on the Z-position.
+                    // This unwraps the chaotic knot into a long, spiraling "cable" or "wormhole".
+                    const twist_angle = z * 0.9;
+                    const cosA = Math.cos(twist_angle);
+                    const sinA = Math.sin(twist_angle);
+
+                    // Apply rotation to X and Y to create the spiral conduit
+                    const x_rot = x * cosA - y * sinA;
+                    const y_rot = x * sinA + y * cosA;
+
+                    // 4. RESONANCE MODULATION (Energy Nodes)
+                    // Create bulging "rings" along the tunnel to mimic data packets or energy pulses
+                    const resonance = 1 + Math.sin(z * 2.5) * 0.3;
+
+                    // 5. VERTICAL STRETCHING
+                    // Stretch Z to emphasize the tunnel length and center the structure
+                    const z_pos = z * 30; 
+
+                    // Output: A complex, spiraling, resonant structure
+                    arr[i*3]   = x_rot * 80 * resonance;
+                    arr[i*3+1] = y_rot * 80 * resonance;
+                    arr[i*3+2] = z_pos;
+                }
+            }   ,
+
+            // 3. DADRA ATTRACTOR (Quantum Flux)
+                        DADRA_NEXUS: (arr) => {
+                let x=1, y=1, z=1;
+                // Base Constants
+                let a=3, b=2.7, c=1.7, d=2, e=9;
+                const dt = 0.004; // Slightly smaller step for detail
+
+                for(let i=0; i<COUNT; i++){
+                    // 1. EVOLVING PARAMETERS
+                    // 'a' and 'e' fluctuate, causing the topology to shift over time
+                    const flux = Math.sin(i * 0.0002); 
+                    const dynamic_a = a + flux * 0.5;
+                    const dynamic_e = e + flux * 1.5;
+
+                    // 2. ENHANCED EQUATIONS
+                    // Added modular folding (mod) or trigonometric distortion
+                    // The 'tan' or 'sin' terms create hard edges and digital artifacts
+                    const dx = y*z - b*x - c*y + d*z;
+                    const dy = dynamic_a*y - x*z + Math.sin(z)*0.1; // Sin coupling
+                    const dz = dynamic_e*z - x*y - Math.cos(x)*y*0.5; // Cos coupling
+
+                    x+=dx*dt; 
+                    y+=dy*dt; 
+                    z+=dz*dt;
+
+                    // 3. STRUCTURAL TRANSFORMATION (The "Tesseract Shift")
+                    // Instead of linear scaling, we project the points through a polar transformation
+                    // This turns the chaotic cloud into a structured "Vortex Engine"
+                    
+                    const radius = Math.sqrt(x*x + y*y);
+                    const angle = Math.atan2(y, x);
+                    
+                    // Modulate radius based on Z to create a dynamic funnel shape
+                    const warpRadius = radius * (1 + Math.abs(z) * 0.05);
+                    
+                    // Twist the angle based on the iteration to create a long spiral helix
+                    const twist = i * 0.002; 
+                    
+                    // Calculate final positions
+                    const X = warpRadius * Math.cos(angle + twist + z*0.1);
+                    const Y = warpRadius * Math.sin(angle + twist + z*0.1);
+                    const Z = z * 15; // Stretch height
+
+                    // Output
+                    arr[i*3]   = X * 15;
+                    arr[i*3+1] = Y * 15;
+                    arr[i*3+2] = Z;
+                }
+            },
+
+            // 4. CHEN ATTRACTOR (Double Scroll)
+            CHEN: (arr) => {
+                let x=-0.1, y=0.5, z=-0.6;
+                const a=40, b=3, c=28;
+                const dt=0.002;
+                for(let i=0; i<COUNT; i++){
+                    const dx = a*(y-x);
+                    const dy = (c-a)*x - x*z + c*y;
+                    const dz = x*y - b*z;
+                    x+=dx*dt; y+=dy*dt; z+=dz*dt;
+                    arr[i*3]=x*2; arr[i*3+1]=y*2; arr[i*3+2]=z*2;
+                }
+            },
+
+            // 5. HALVORSEN ATTRACTOR (Twisted Triangle)
+            HALVORSEN: (arr) => {
+                let x=-5, y=0, z=0;
+                const a=1.89;
+                const dt=0.005;
+                for(let i=0; i<COUNT; i++){
+                    const dx = -a*x - 4*y - 4*z - y*y;
+                    const dy = -a*y - 4*z - 4*x - z*z;
+                    const dz = -a*z - 4*x - 4*y - x*x;
+                    x+=dx*dt; y+=dy*dt; z+=dz*dt;
+                    arr[i*3]=x*4; arr[i*3+1]=y*4; arr[i*3+2]=z*4;
+                }
+            },
+
+            // --- 4D & TOPOLOGICAL ANOMALIES ---
+
+            // 6. TESSERACT (Rotating 4D Hypercube)
+            TESSERACT: (arr) => {
+                const scale = 100;
+                const angle = Date.now() * 0.0001; // Rotating based on time
+                const cosA = Math.cos(angle), sinA = Math.sin(angle);
                 
-                idx++;
-            }
-        }
-    },
+                // 16 vertices of a hypercube
+                const verts = [];
+                for(let i=0; i<16; i++){
+                    verts.push([
+                        (i&1)?1:-1, (i&2)?1:-1, (i&4)?1:-1, (i&8)?1:-1
+                    ]);
+                }
 
-    // 2. VORTEX GRID (Hyperbolic Cylinder)
-    // A grid surface that wraps around itself, creating a twisted vortex.
-    // Looks like a time-tunnel or a warp engine.
-    VORTEX_GRID: (arr) => {
-        const height = 400;
-        const turns = 5;
-        
-        for(let i=0; i<COUNT; i++) {
-            // Height position (Y)
-            const t = (i / COUNT); // 0 to 1
-            const y = (t - 0.5) * height;
-            
-            // Angle based on height (spiral)
-            const angle = t * Math.PI * 2 * turns;
-            
-            // Hyperbolic Expansion: Radius gets larger at ends
-            const r = 50 + Math.pow(t * 2 - 1, 2) * 100;
-            
-            // Create a grid effect: Snap angle to integers
-            const gridSnap = Math.floor(angle * 10) / 10;
-            
-            // Multiple lines: Snap radius to create "ribs"
-            const ribSnap = Math.floor(r / 10) * 10;
+                for(let i=0; i<COUNT; i++){
+                    // Pick a vertex
+                    const v = verts[i % 16];
+                    let [x,y,z,w] = v;
 
-            arr[i*3] = Math.cos(gridSnap) * ribSnap;
-            arr[i*3+1] = y;
-            arr[i*3+2] = Math.sin(gridSnap) * ribSnap;
-        }
-    },
+                    // Rotate in XW plane
+                    const xw = x*cosA - w*sinA;
+                    const ww = x*sinA + w*cosA;
+                    x=xw; w=ww;
 
-    // 3. NEURAL MATRIX (3D Lattice Network)
-    // Nodes connected by thick strands, forming a cubic brain-like structure.
-    // Looks like an AI core or a server room visualization.
-    NEURAL_MATRIX: (arr) => {
-        const gridSize = 20;
-        const limit = 100;
-        
-        for(let x = -limit; x <= limit; x += gridSize) {
-            for(let y = -limit; y <= limit; y += gridSize) {
-                for(let z = -limit; z <= limit; z += gridSize) {
-                    if(i >= COUNT) return;
+                    // Stereographic projection
+                    const dist = 2.5;
+                    const proj = 1 / (dist - w);
                     
-                    // Distance from center (Spherical cutoff)
-                    const dist = Math.sqrt(x*x + y*y + z*z);
-                    
-                    // Only keep points inside a sphere, but remove inner core
-                    if(dist > limit || dist < 30) continue;
-                    
-                    // "Strand" logic: Fill the space between nodes
-                    // We add points along the lines connecting to neighbors
-                    for(let j=0; j<8; j++) { // 8 particles per node (volume)
-                        if(i >= COUNT) break;
-                        
-                        const offsetX = (Math.random()) * gridSize;
-                        const offsetY = (Math.random()) * gridSize;
-                        const offsetZ = (Math.random()) * gridSize;
+                    arr[i*3] = x * proj * scale;
+                    arr[i*3+1] = y * proj * scale;
+                    arr[i*3+2] = z * proj * scale;
+                }
+            },
 
-                        arr[i*3] = x + offsetX;
-                        arr[i*3+1] = y + offsetY;
-                        arr[i*3+2] = z + offsetZ;
-                        
-                        // Color variation (optional logic)
-                        // if (Math.random() > 0.9) makeGlowing();
-                        
-                        i++; 
+            // 7. KLEIN BOTTLE (Topological Surface)
+            KLEIN_BOTTLE: (arr) => {
+                let idx = 0;
+                for(let u=0; u<Math.PI*2; u+=0.05){
+                    for(let v=0; v<Math.PI*2; v+=0.1){
+                        if(idx >= COUNT) break;
+                        const r = 4*(1-Math.cos(u)/2);
+                        let x, y, z;
+                        if(u < Math.PI){
+                            x = 6*Math.cos(u)*(1+Math.sin(u)) + r*Math.cos(u)*Math.cos(v);
+                            y = 16*Math.sin(u) + r*Math.sin(u)*Math.cos(v);
+                        } else {
+                            x = 6*Math.cos(u)*(1+Math.sin(u)) + r*Math.cos(v+Math.PI);
+                            y = 16*Math.sin(u);
+                        }
+                        z = r*Math.sin(v);
+                        arr[idx*3]=x*5; arr[idx*3+1]=y*5-50; arr[idx*3+2]=z*5;
+                        idx++;
                     }
                 }
-            }
-        }
-    },
+            },
 
-    // 4. TESSERACT PROJECTION (4D Cube)
-    // A rotating 4D hypercube projected into 3D.
-    // Looks impossible and geometrically alien.
-    HYPERCUBE: (arr) => {
-        const vertices = [
-            [-1,-1,-1,-1], [-1,-1,-1,1], [-1,-1,1,-1], [-1,-1,1,1],
-            [-1,1,-1,-1], [-1,1,-1,1], [-1,1,1,-1], [-1,1,1,1],
-            [1,-1,-1,-1], [1,-1,-1,1], [1,-1,1,-1], [1,-1,1,1],
-            [1,1,-1,-1], [1,1,-1,1], [1,1,1,-1], [1,1,1,1]
-        ];
-        const scale = 100;
-        
-        // Rotation speeds in 4D
-        const angle = Math.PI / 4; 
-        const cosA = Math.cos(angle), sinA = Math.sin(angle);
-        
-        // Rotation speed in 3D
-        const angle3D = Date.now() * 0.001; // Simulating time if possible, or static angle
-        const cos3D = Math.cos(0.5), sin3D = Math.sin(0.5);
+            // 8. MOBIUS STRIP (Volumetric)
+            MOBIUS: (arr) => {
+                const radius = 100;
+                const width = 40;
+                for(let i=0; i<COUNT; i++){
+                    const t = (i/COUNT) * Math.PI * 2;
+                    const v = (Math.random() - 0.5) * width;
+                    const x = (radius + v * Math.cos(t/2)) * Math.cos(t);
+                    const y = (radius + v * Math.cos(t/2)) * Math.sin(t);
+                    const z = v * Math.sin(t/2);
+                    arr[i*3]=x; arr[i*3+1]=y; arr[i*3+2]=z;
+                }
+            },
 
-        for(let i=0; i<COUNT; i++) {
-            // Pick a vertex
-            const v = vertices[i % 16];
-            let x=v[0], y=v[1], z=v[2], w=v[3];
-
-            // Rotate in ZW plane
-            let z_r = z * cosA - w * sinA;
-            let w_r = z * sinA + w * cosA;
-            z = z_r; w = w_r;
-
-            // Rotate in XW plane
-            let x_r = x * cosA - w * sinA;
-            w_r = x * sinA + w * cosA;
-            x = x_r; w = w_r;
-
-            // Stereographic Projection (4D -> 3D)
-            // distance from 4D camera
-            const distance = 3.0; 
-            const wFactor = 1 / (distance - w);
-            
-            let px = x * wFactor * scale;
-            let py = y * wFactor * scale;
-            let pz = z * wFactor * scale;
-
-            // Rotate result in 3D XY plane
-            let x_final = px * cos3D - py * sin3D;
-            let y_final = px * sin3D + py * cos3D;
-
-            // Draw lines connecting vertices? 
-            // Since this is a point cloud, we just draw the vertices densely.
-            // To make it look solid, we add duplicates along the edges.
-            // Approximating edge drawing by adding points between random pairs
-            if(Math.random() > 0.5) {
-                const v2 = vertices[Math.floor(Math.random()*16)];
-                // Interpolate
-                const t = Math.random();
-                x_final += (v2[0] - x) * t * scale * 0.5;
-                y_final += (v2[1] - y) * t * scale * 0.5;
-                pz += (v2[2] - z) * t * scale * 0.5;
-            }
-
-            arr[i*3] = x_final;
-            arr[i*3+1] = y_final;
-            arr[i*3+2] = pz;
-        }
-    },
-
-    // 5. FRACTAL TREE CRYSTAL (3D L-System)
-    // A recursive branching structure that looks like a frozen lightning bolt or alien coral.
-    FRACTAL_TREE: (arr) => {
-        const depth = 5; // Recursion depth
-        let idx = 0;
-        
-        function branch(x, y, z, dx, dy, dz, len, level) {
-            if (level === 0 || idx >= COUNT) return;
-            
-            // Draw branch particles
-            const segments = 10;
-            for(let s=0; s<segments; s++) {
-                if(idx >= COUNT) break;
-                const t = s / segments;
-                arr[idx*3] = x + dx * len * t;
-                arr[idx*3+1] = y + dy * len * t;
-                arr[idx*3+2] = z + dz * len * t;
-                idx++;
-            }
-            
-            // Calculate new position (tip of branch)
-            const nx = x + dx * len;
-            const ny = y + dy * len;
-            const nz = z + dz * len;
-            
-            // Branch out (2 or 3 branches)
-            const branches = 3;
-            for(let b=0; b<branches; b++) {
-                if(idx >= COUNT) break;
-                
-                // Rotate direction vector
-                const angle = (b / branches) * Math.PI * 2;
-                const tilt = 0.5; // Spread angle
-                
-                // Simple 3D rotation matrix application
-                // (This is a simplified direction change)
-                let ndx = dx * Math.cos(tilt) + Math.sin(angle);
-                let ndy = dy * Math.cos(tilt) + Math.cos(angle);
-                let ndz = dz + (Math.random()-0.5);
-                
-                // Normalize roughly
-                const mag = Math.sqrt(ndx*ndx + ndy*ndy + ndz*ndz);
-                ndx/=mag; ndy/=mag; ndz/=mag;
-                
-                branch(nx, ny, nz, ndx, ndy, ndz, len * 0.7, level - 1);
-            }
-        }
-        
-        // Start tree at bottom center 
-        branch(0, -150, 0, 0, 1, 0, 60, depth);
-    },
-
-    // 6. PLASMA SHELL (Deformed Geosphere)
-    // A sphere where the surface is deformed by interference waves.
-    // Looks like a living planet core or a plasma containment field.
-    PLASMA_SHELL: (arr) => {
-        const goldenRatio = (1 + Math.sqrt(5)) / 2;
-        
-        for(let i=0; i<COUNT; i++) {
-            const theta = 2 * Math.PI * i / goldenRatio;
-            const phi = Math.acos(1 - 2 * (i + 0.5) / COUNT);
-            
-            // Base Sphere
-            const rBase = 80;
-            
-            // 3 Complex interference waves
-            const wave1 = Math.sin(theta * 8 + phi * 8) * 15;
-            const wave2 = Math.cos(theta * 12 - phi * 6) * 10;
-            const wave3 = Math.sin(phi * 20 + theta * 5) * 5;
-            
-            const r = rBase + wave1 + wave2 + wave3;
-            
-            // Convert to Cartesian
-            const x = r * Math.sin(phi) * Math.cos(theta);
-            const y = r * Math.sin(phi) * Math.sin(theta);
-            const z = r * Math.cos(phi);
-            
-            // Add "Plasma" noise (internal glow)
-            // Pull some particles inward to create volume
-            const volume = Math.random();
-            const depth = volume > 0.8 ? 20 : 0;
-            
-            arr[i*3] = x * (1 - depth/100);
-            arr[i*3+1] = y * (1 - depth/100);
-            arr[i*3+2] = z * (1 - depth/100);
-        }
-    },
-
-    // 7. HELICAL CITY (Cylindrical Skyscrapers)
-    // Particles arranged in a cylinder, but with vertical "towers" rising.
-    HELICAL_CITY: (arr) => {
-        const radius = 80;
-        const height = 300;
-        
-        for(let i=0; i<COUNT; i++) {
-            const angle = (i / COUNT) * Math.PI * 2 * 10; // 10 spirals
-            const y = (Math.random() - 0.5) * height;
-            
-            // Logic: Are we building a tower or a street?
-            // Modulo math to create "slots" for buildings
-            const slot = Math.floor(angle * 10) % 2; 
-            
-            let r = radius;
-            
-            // If it's a "building" slot, rise up significantly
-            if(slot === 0) {
-                // Taper the towers in the middle
-                const taper = Math.abs(y) / height; 
-                r += (Math.random() * 20) + taper * 20;
-            } else {
-                // Street level
-                r = radius - 5; 
-            }
-            
-            arr[i*3] = Math.cos(angle) * r;
-            arr[i*3+1] = y;
-            arr[i*3+2] = Math.sin(angle) * r;
-        }
-    },
-    
-    
-    
-    
-       // 1. TESSERACT SWIRL (4D Hypercube Projection)
-    // Projects a rotating 4D cube into 3D space, creating an "inside-out" effect.
-    TESSERACT: (arr) => {
-        const scale = 130;
-        const rotAngle = Math.PI / 4; // 45 degree 4D rotation
-        for(let i=0; i<COUNT; i++) {
-            // 1. Create a random point in a 4D unit cube [-1, 1]
-            let x = (Math.random() - 0.5) * 2;
-            let y = (Math.random() - 0.5) * 2;
-            let z = (Math.random() - 0.5) * 2;
-            let w = (Math.random() - 0.5) * 2;
-
-            // 2. Rotate in 4D (XW plane) to create the hyper-twist
-            let x_r = x * Math.cos(rotAngle) - w * Math.sin(rotAngle);
-            let w_r = x * Math.sin(rotAngle) + w * Math.cos(rotAngle);
-            x = x_r; w = w_r;
-
-            // 3. Rotate in 4D (YW plane) for extra complexity
-            let y_r = y * Math.cos(rotAngle) - w * Math.sin(rotAngle);
-            w = y * Math.sin(rotAngle) + w * Math.cos(rotAngle);
-            y = y_r;
-
-            // 4. Stereographic Projection (4D -> 3D)
-            const dist = 3.0; // Distance of 4D camera
-            const wFactor = 1 / (dist - w);
-
-            arr[i*3] = x * wFactor * scale;
-            arr[i*3+1] = y * wFactor * scale;
-            arr[i*3+2] = z * wFactor * scale;
-        }
-    },
-        FRACTAL_ICOSA: (arr) => {
-        const phi = (1 + Math.sqrt(5)) / 2;
-        // The 12 vertices of a standard icosahedron
-        const verts = [
-            [0, 1, phi], [0, -1, phi], [0, 1, -phi], [0, -1, -phi],
-            [1, phi, 0], [-1, phi, 0], [1, -phi, 0], [-1, -phi, 0],
-            [phi, 0, 1], [phi, 0, -1], [-phi, 0, 1], [-phi, 0, -1]
-        ];
-
-        for(let i=0; i<COUNT; i++) {
-            // Determine fractal level (0 to 4) based on particle index
-            const level = i % 5;
-            const levelScale = Math.pow(0.5, level); // Each layer is half the size
-            const baseSize = 140 * levelScale;
-
-            // Pick a random vertex
-            const v = verts[Math.floor(Math.random() * verts.length)];
-            
-            // Rotate each layer independently for a "crystal" look
-            const theta = level * 0.8; 
-            const x_rot = v[0] * Math.cos(theta) - v[2] * Math.sin(theta);
-            const z_rot = v[0] * Math.sin(theta) + v[2] * Math.cos(theta);
-
-            // Interpolate from center to vertex to create volume/lines
-            const t = Math.pow(Math.random(), 3); // Bias towards center for core density
-
-            arr[i*3] = x_rot * baseSize * t;
-            arr[i*3+1] = v[1] * baseSize * t;
-            arr[i*3+2] = z_rot * baseSize * t;
-        }
-    },
-
-    MOBIUS_LATTICE: (arr) => {
-        const R = 90; // Main radius
-        const width = 50; 
-        const turns = 2; // Full 4pi twist
-        
-        for(let i=0; i<COUNT; i++) {
-            const t = (i / COUNT) * Math.PI * 2 * turns;
-            
-            // Lattice Logic: Snap to grid lines based on index parity
-            // This creates "ribs" along the strip rather than a solid sheet
-            const isRib = (i % 5 === 0); 
-            let v = (Math.random() - 0.5) * width;
-            
-            if(isRib) {
-                // Force particles to the edges of the strip for a wireframe look
-                v = (Math.random() > 0.5 ? 1 : -1) * (width / 2);
-            }
-
-            // Möbius parametric equations
-            const halfAngle = t / 2;
-            const cosHalf = Math.cos(halfAngle);
-            const sinHalf = Math.sin(halfAngle);
-
-            const x = (R + v * cosHalf) * Math.cos(t);
-            const y = (R + v * cosHalf) * Math.sin(t);
-            const z = v * sinHalf;
-
-            arr[i*3] = x;
-            arr[i*3+1] = y;
-            arr[i*3+2] = z;
-        }
-    },
-
-    GEOSPHERE_FLUX: (arr) => {
-        const rBase = 100;
-        const goldenRatio = (1 + Math.sqrt(5)) / 2;
-
-        for(let i=0; i<COUNT; i++) {
-            // Fibonacci Sphere Algorithm (Even distribution)
-            const theta = 2 * Math.PI * i / goldenRatio;
-            const phi = Math.acos(1 - 2 * (i + 0.5) / COUNT);
-
-            // Flux Harmonics: Modulate radius based on position
-            // Creates "spikes" and "valleys"
-            const wave1 = Math.sin(theta * 6 + phi * 4);
-            const wave2 = Math.cos(theta * 10 - phi * 2);
-            const distortion = (wave1 + wave2) * 15;
-
-            // Apply high-frequency noise for "electric" feel
-            const noise = (Math.random() - 0.5) * 5;
-            
-            const r = rBase + distortion + noise;
-
-            const x = r * Math.cos(theta) * Math.sin(phi);
-            const y = r * Math.sin(theta) * Math.sin(phi);
-            const z = r * Math.cos(phi);
-
-            arr[i*3] = x;
-            arr[i*3+1] = y;
-            arr[i*3+2] = z;
-        }
-    },
-        LIQUID_CRYSTAL_STREAM: (arr) => {
-        const width = 400;
-        const length = 600;
-        
-        for(let i=0; i<COUNT; i++) {
-            // Position along the stream (0 to 1)
-            const t = i / COUNT; 
-            
-            // X and Z form a long plane/ribbon
-            const x = (t - 0.5) * length;
-            const z = (Math.random() - 0.5) * width;
-            
-            // Y is the "Liquid" height
-            // Combine multiple sine waves for fluid motion
-            const wave1 = Math.sin(x * 0.02 + z * 0.05) * 30;
-            const wave2 = Math.cos(x * 0.05) * 20;
-            const wave3 = Math.sin(z * 0.1 + t * 10) * 10;
-            
-            let y = wave1 + wave2 + wave3;
-            
-            // Add "Crystalline" spikes (sharp peaks)
-            if(Math.random() > 0.92) {
-                y += (Math.random() > 0.5 ? 40 : -40);
-            }
-
-            arr[i*3] = x;
-            arr[i*3+1] = y;
-            arr[i*3+2] = z;
-        }
-    },
-        PARTICLE_BLOOM: (arr) => {
-        const goldenRatio = (1 + Math.sqrt(5)) / 2;
-        
-        for(let i=0; i<COUNT; i++) {
-            // Golden Angle distribution
-            const theta = i * 2.39996; // ~137.5 degrees in radians
-            const rBase = 4 * Math.sqrt(i); // Expanding spiral
-            
-            // Create "Petals" by modulating radius with Sine waves
-            // High frequency wave creates the frilly flower edge
-            const petalWave = Math.sin(theta * 6) * Math.cos(theta * 2 + i/500);
-            const r = rBase + (petalWave * 15);
-
-            // Flatten into a bowl/flower shape
-            const x = r * Math.cos(theta);
-            const z = r * Math.sin(theta);
-            
-            // Y creates the cup shape (negative center, raised edges)
-            const y = (rBase / 8) - (Math.random() * 10) - 50; 
-
-            // Tilt the flower slightly
-            arr[i*3] = x;
-            arr[i*3+1] = y * 0.5 + z * 0.5; // Tilt transformation
-            arr[i*3+2] = z * 0.5 - y * 0.5; // Tilt transformation
-        }
-    },  
-
-    // 2. DNA DOUBLE HELIX
-    
-
-    // 3. TORUS RING (Sci-Fi Portal)
-    RING: (arr) => {
-        const R = 100; // Major radius
-        const r = 40;  // Minor radius (tube thickness)
-        for(let i=0; i<COUNT; i++) {
-            // Random point on torus surface
-            const u = Math.random() * Math.PI * 2;
-            const v = Math.random() * Math.PI * 2;
-            
-            arr[i*3] = (R + r * Math.cos(v)) * Math.cos(u);
-            arr[i*3+1] = (R + r * Math.cos(v)) * Math.sin(u);
-            arr[i*3+2] = r * Math.sin(v);
-        }
-    },
-
-    // 4. HYPERCUBE (The Box)
-    CUBE: (arr) => {
-        const size = 160; 
-        for(let i=0; i<COUNT; i++) {
-            // Pick a random face (0-5)
-            const face = Math.floor(Math.random() * 6);
-            // Random coordinates on that face
-            const u = (Math.random() - 0.5) * size;
-            const v = (Math.random() - 0.5) * size;
-            
-            if(face === 0) { arr[i*3]=size; arr[i*3+1]=u; arr[i*3+2]=v; } // Right
-            else if(face === 1) { arr[i*3]=-size; arr[i*3+1]=u; arr[i*3+2]=v; } // Left
-            else if(face === 2) { arr[i*3]=u; arr[i*3+1]=size; arr[i*3+2]=v; } // Top
-            else if(face === 3) { arr[i*3]=u; arr[i*3+1]=-size; arr[i*3+2]=v; } // Bottom
-            else if(face === 4) { arr[i*3]=u; arr[i*3+1]=v; arr[i*3+2]=size; } // Front
-            else { arr[i*3]=u; arr[i*3+1]=v; arr[i*3+2]=-size; } // Back
-        }
-    },
-    
-    // 2. PULSE SPHERE (Sound Wave Harmonics)
-    // A sphere deformed by sine waves to look like a sci-fi planet
-    PULSE_SPHERE: (arr) => {
-        const rBase = 90;
-        for(let i=0; i<COUNT; i++) {
-            const phi = Math.acos(-1 + (2 * i) / COUNT);
-            const theta = Math.sqrt(COUNT * Math.PI) * phi;
-            
-            // Harmonic Deformation
-            // Modulate the radius based on angle to create spikes/waves
-            let r = rBase + 15 * Math.sin(theta * 8) * Math.cos(phi * 8);
-            r += 5 * Math.sin(theta * 20); // High frequency noise
-            
-            arr[i*3] = r * Math.cos(theta) * Math.sin(phi);
-            arr[i*3+1] = r * Math.sin(theta) * Math.sin(phi);
-            arr[i*3+2] = r * Math.cos(phi);
-        }
-    },
-
-    // 3. CYBER GRID (Data Cylinder)
-    // Looks like falling digital rain wrapped in a cylinder
-    CYBER_GRID: (arr) => {
-        const segments = 32; // Number of vertical lines
-        const radius = 80;
-        const height = 400;
-        
-        for(let i=0; i<COUNT; i++) {
-            // Snap angles to create distinct vertical lines
-            const segIndex = i % segments;
-            const angle = segIndex * (Math.PI * 2 / segments);
-            
-            // Distribute particles vertically
-            const y = (i / COUNT) * height - (height/2);
-            
-            // Add some "glitch" particles outside the main cylinder
-            const isGlitch = Math.random() > 0.95;
-            const rOffset = isGlitch ? 30 : 0;
-            
-            arr[i*3] = (radius + rOffset) * Math.cos(angle);
-            arr[i*3+1] = y;
-            arr[i*3+2] = (radius + rOffset) * Math.sin(angle);
-        }
-    },
-
-    // 4. KLEIN BOTTLE (Topological Mystery)
-    // A complex shape with no inside or outside
-    KLEIN_BOTTLE: (arr) => {
-        for(let i=0; i<COUNT; i++) {
-            const u = (i / COUNT) * Math.PI * 2;
-            const v = Math.random() * Math.PI * 2; // Random v for volume filling
-            
-            const cosu = Math.cos(u);
-            const sinu = Math.sin(u);
-            const cosv = Math.cos(v);
-            const sinv = Math.sin(v);
-            
-            // Klein Bottle Parametric Equations (Simplified)
-            const scale = 40; // Scale up significantly
-            
-            const x = (cosu * (2 + cosv) + (u / Math.PI) * cosu * sinv) * scale;
-            const y = (sinu * (2 + cosv) + (u / Math.PI) * sinu * sinv) * scale;
-            const z = ((u / Math.PI) * sinv + cosv) * sinv * scale;
-            
-            arr[i*3] = x;
-            arr[i*3+1] = y - 50; // Center vertically
-            arr[i*3+2] = z;
-        }
-    },
-
-    // 5. GEOSPHERE (Fibonacci Lattice)
-    // Perfectly distributed points on a sphere (Structural/Strong)
-    GEOSPHERE: (arr) => {
-        const radius = 100;
-        const goldenRatio = (1 + Math.sqrt(5)) / 2;
-        
-        for(let i=0; i<COUNT; i++) {
-            const theta = 2 * Math.PI * i / goldenRatio;
-            const phi = Math.acos(1 - 2 * (i + 0.5) / COUNT);
-            
-            const x = radius * Math.cos(theta) * Math.sin(phi);
-            const y = radius * Math.sin(theta) * Math.sin(phi);
-            const z = radius * Math.cos(phi);
-            
-            arr[i*3] = x;
-            arr[i*3+1] = y;
-            arr[i*3+2] = z;
-        }
-    },
-    TORUS_KNOT: (arr) => {
-        const p = 2, q = 3; // Determines knot complexity
-        const tube = 25;
-        const radius = 80;
-        for(let i=0; i<COUNT; i++) {
-            const u = (i / COUNT) * Math.PI * 2 * p; // Loop around the ring
-            const v = (Math.random() - 0.5) * Math.PI * 2; // Around the tube
-            
-            const r = radius + tube * Math.cos(q * u / p);
-            
-            arr[i*3] = r * Math.cos(u) + (Math.random()-0.5)*5;
-            arr[i*3+1] = tube * Math.sin(q * u / p) + (Math.random()-0.5)*5;
-            arr[i*3+2] = r * Math.sin(u) + (Math.random()-0.5)*5;
-        }
-    },
-     HELICOID: (arr) => {
-        for(let i=0; i<COUNT; i++) {
-            const t = (i / COUNT); // 0 to 1
-            const angle = t * Math.PI * 16; // 8 full turns
-            const radius = 20 + t * 80; // Expanding cone/spiral
-            
-            arr[i*3] = Math.cos(angle) * radius;
-            arr[i*3+1] = (t - 0.5) * 300; // Vertical height
-            arr[i*3+2] = Math.sin(angle) * radius;
-        }
-    },
-
-    // 4. ATOM (Nucleus + Electron Rings)
-    
-    // 5. CRYSTAL PLANE (A spiky digital floor)
-    PLANE: (arr) => {
-        const size = 200;
-        for(let i=0; i<COUNT; i++) {
-            const x = (Math.random() - 0.5) * size;
-            const y = (Math.random() - 0.5) * size;
-            // Z is mostly 0, but with random spikes
-            const z = (Math.random() < 0.1) ? (Math.random() - 0.5) * 100 : 0;
-            
-            arr[i*3] = x;
-            arr[i*3+1] = y;
-            arr[i*3+2] = z - 50; // Lower down
-        }
-    },
-
-        BLACK_HOLE: (arr) => {
-        for(let i=0; i<COUNT; i++) {
-            // Distribute particles in a disc (flat on XZ plane)
-            // Use random distribution biased towards center
-            const t = Math.random();
-            const radius = 10 + t * 200; // Hole in middle (radius 10)
-            
-            // The angle depends heavily on radius to create the spiral
-            // Inner particles rotate more (gravitational time dilation simulation)
-            const angle = t * Math.PI * 20 + Math.random() * 0.5;
-            
-            // Warp effect: Tilt the inner part of the disc
-            const zTilt = (Math.random() - 0.5) * (200 / radius) * 10;
-
-            arr[i*3] = Math.cos(angle) * radius;
-            arr[i*3+1] = (Math.random() - 0.5) * 2; // Very thin disc
-            arr[i*3+2] = Math.sin(angle) * radius + zTilt;
-        }
-    },
-        NEBULA: (arr) => {
-        // Define 5 random "centers of gravity" for the cloud clusters
-        const centers = [];
-        for(let k=0; k<5; k++) {
-            centers.push({
-                x: (Math.random() - 0.5) * 300,
-                y: (Math.random() - 0.5) * 200,
-                z: (Math.random() - 0.5) * 300
-            });
-        }
-
-        for(let i=0; i<COUNT; i++) {
-            // Pick a random center
-            const center = centers[Math.floor(Math.random() * centers.length)];
-            
-            // Gaussian distribution (box-muller transform approximation) around that center
-            const u = 1 - Math.random();
-            const v = Math.random();
-            const r = 60 * Math.sqrt(-2.0 * Math.log(u)); // Cluster spread
-            const theta = 2.0 * Math.PI * v;
-
-            arr[i*3] = center.x + r * Math.cos(theta);
-            arr[i*3+1] = center.y + r * Math.sin(theta);
-            arr[i*3+2] = center.z + (Math.random() - 0.5) * 60;
-        }
-    },
-        QUANTUM_LATTICE: (arr) => {
-        const gridSize = 20; // Distance between grid points
-        const limit = 100;
-        
-        let i = 0;
-        for(let x = -limit; x <= limit; x += gridSize) {
-            for(let y = -limit; y <= limit; y += gridSize) {
-                for(let z = -limit; z <= limit; z += gridSize) {
-                    if(i >= COUNT) break;
+            // 9. TREFOIL KNOT (Torus Knot)
+            TREFOIL: (arr) => {
+                const R = 80, r = 30;
+                for(let i=0; i<COUNT; i++){
+                    const u = (i/COUNT) * Math.PI * 2 * 3;
+                    const v = Math.random() * Math.PI * 2;
                     
-                    // Quantum Jump: 10% chance to teleport far away
-                    const isQuantum = Math.random() > 0.9;
+                    // Parametric formula for trefoil
+                    const x = Math.sin(u) + 2*Math.sin(2*u);
+                    const y = Math.cos(u) - 2*Math.cos(2*u);
+                    const z = -Math.sin(3*u);
                     
-                    if(isQuantum) {
-                        arr[i*3] = x + (Math.random()-0.5) * 300;
-                        arr[i*3+1] = y + (Math.random()-0.5) * 300;
-                        arr[i*3+2] = z + (Math.random()-0.5) * 300;
+                    arr[i*3]=x*40; arr[i*3+1]=y*40; arr[i*3+2]=z*40;
+                }
+            },
+
+            // --- SCI-FI STRUCTURES ---
+
+            // 10. DYSON SWARM (Satellite Ring)
+            DYSON_SWARM: (arr) => {
+                const rings = 30;
+                let idx = 0;
+                for(let r=0; r<rings; r++){
+                    const radius = 50 + r*5;
+                    const particles = Math.floor(COUNT/rings);
+                    for(let p=0; p<particles; p++){
+                        if(idx >= COUNT) break;
+                        const angle = (p/particles) * Math.PI * 2;
+                        const wobble = Math.sin(angle*10+r) * 10;
+                        arr[idx*3] = Math.cos(angle)*radius + wobble;
+                        arr[idx*3+1] = Math.sin(angle)*radius + wobble;
+                        arr[idx*3+2] = (Math.random()-0.5)*30;
+                        idx++;
+                    }
+                }
+            },
+
+            // 11. CYBER TUNNEL (Warp Drive)
+            CYBER_TUNNEL: (arr) => {
+                const length = 600;
+                const radius = 100;
+                for(let i=0; i<COUNT; i++){
+                    const t = (i/COUNT);
+                    const angle = t * Math.PI * 2 * 20; // Tight spiral
+                    const z = t * length - length/2;
+                    const r = radius * (1 - t*0.5); // Taper
+                    arr[i*3] = Math.cos(angle)*r;
+                    arr[i*3+1] = Math.sin(angle)*r;
+                    arr[i*3+2] = z;
+                }
+            },
+
+            // 12. NEURAL NETWORK (Nodes & Links)
+            NEURAL_NET: (arr) => {
+                const nodes = [];
+                // Create 50 nodes
+                for(let i=0; i<50; i++) nodes.push({
+                    x:(Math.random()-0.5)*300,
+                    y:(Math.random()-0.5)*300,
+                    z:(Math.random()-0.5)*300
+                });
+                
+                for(let i=0; i<COUNT; i++){
+                    const n1 = nodes[Math.floor(Math.random()*nodes.length)];
+                    const n2 = nodes[Math.floor(Math.random()*nodes.length)];
+                    const t = Math.random();
+                    // Draw line between nodes
+                    arr[i*3] = n1.x + (n2.x-n1.x)*t + (Math.random()-0.5)*5;
+                    arr[i*3+1] = n1.y + (n2.y-n1.y)*t + (Math.random()-0.5)*5;
+                    arr[i*3+2] = n1.z + (n2.z-n1.z)*t + (Math.random()-0.5)*5;
+                }
+            },
+
+            // 13. RING WORLD (Halo Array)
+            HALO_RING: (arr) => {
+                const R = 150;
+                const width = 30;
+                const depth = 50;
+                for(let i=0; i<COUNT; i++){
+                    const angle = (i/COUNT) * Math.PI * 2;
+                    const w = (Math.random()-0.5) * width;
+                    const d = (Math.random()-0.5) * depth;
+                    arr[i*3] = Math.cos(angle)*(R+d) + Math.cos(angle+Math.PI/2)*w;
+                    arr[i*3+1] = Math.sin(angle)*(R+d) + Math.sin(angle+Math.PI/2)*w;
+                    arr[i*3+2] = Math.sin(angle) * depth/2; // Verticality
+                }
+            },
+
+            // 14. SIERPINSKI TETRAHEDRON (Fractal)
+            SIERPINSKI: (arr) => {
+                const depth = 6;
+                const size = 200;
+                const vertices = [
+                    {x:0, y:0, z:0},
+                    {x:size, y:0, z:0},
+                    {x:size/2, y:0, z:size},
+                    {x:size/2, y:size, z:size/2}
+                ];
+                
+                // Recursive approximation with random "Chaos Game"
+                let x=0, y=0, z=0;
+                for(let i=0; i<COUNT; i++){
+                    const v = vertices[Math.floor(Math.random()*4)];
+                    x = (x + v.x)/2;
+                    y = (y + v.y)/2;
+                    z = (z + v.z)/2;
+                    arr[i*3]=x-100; arr[i*3+1]=y-100; arr[i*3+2]=z-100;
+                }
+            },
+
+            // 15. JETTISONED DEBRIS (Explosion)
+            DEBRIS_FIELD: (arr) => {
+                const clusters = 20;
+                for(let i=0; i<COUNT; i++){
+                    const c = Math.floor(Math.random()*clusters);
+                    const spread = 50;
+                    const offset = (Math.random()-0.5)*300;
+                    const axis = c % 3;
+                    arr[i*3] = axis===0 ? offset : (Math.random()-0.5)*spread;
+                    arr[i*3+1] = axis===1 ? offset : (Math.random()-0.5)*spread;
+                    arr[i*3+2] = axis===2 ? offset : (Math.random()-0.5)*spread;
+                }
+            },
+
+            // 16. VORTEX ENGINE (Black Hole)
+            VORTEX_ENGINE: (arr) => {
+                for(let i=0; i<COUNT; i++){
+                    const t = (i/COUNT);
+                    const angle = t * Math.PI * 2 * 10;
+                    const radius = Math.pow(t, 0.5) * 150; // Fast center, slow edge
+                    const z = (t - 0.5) * 200; // Elongated
+                    
+                    arr[i*3] = Math.cos(angle)*radius;
+                    arr[i*3+1] = Math.sin(angle)*radius;
+                    arr[i*3+2] = z + Math.sin(angle*5)*10; // Rippled
+                }
+            },
+
+            // 17. PLANETARY GEAR (Mechanical)
+            GEAR_SYSTEM: (arr) => {
+                const teeth = 12;
+                const innerR = 60;
+                const outerR = 100;
+                
+                for(let i=0; i<COUNT; i++){
+                    const ring = Math.floor(Math.random() * 3); // 3 layers
+                    const t = (i/COUNT);
+                    const angle = t * Math.PI * 2 * teeth;
+                    
+                    const r = ring === 0 ? innerR : outerR;
+                    const z = (ring - 1) * 20; // Stack gears
+                    
+                    // Gear tooth logic
+                    const toothAngle = angle % (Math.PI*2/teeth);
+                    const toothDepth = (toothAngle < 0.2) ? 20 : 0;
+                    
+                    arr[i*3] = Math.cos(angle) * (r + toothDepth);
+                    arr[i*3+1] = Math.sin(angle) * (r + toothDepth);
+                    arr[i*3+2] = z;
+                }
+            },
+
+            // 18. FRACTAL TREE (Digital Growth)
+            FRACTAL_TREE: (arr) => {
+                // Simple recursive stack logic
+                let stack = [{x:0, y:-150, z:0, angle:-Math.PI/2, length:50, depth:0}];
+                let idx = 0;
+                
+                while(idx < COUNT && stack.length > 0){
+                    const node = stack.shift();
+                    
+                    // Draw this segment
+                    for(let k=0; k<10; k++){
+                        if(idx >= COUNT) break;
+                        const t = k/10;
+                        arr[idx*3] = node.x + Math.cos(node.angle)*node.length*t;
+                        arr[idx*3+1] = node.y + Math.sin(node.angle)*node.length*t;
+                        arr[idx*3+2] = node.z + (Math.random()-0.5)*2;
+                        idx++;
+                    }
+                    
+                    // Branch
+                    if(node.depth < 5){
+                        stack.push({
+                            x: node.x + Math.cos(node.angle)*node.length,
+                            y: node.y + Math.sin(node.angle)*node.length,
+                            z: node.z,
+                            angle: node.angle - 0.5 - Math.random()*0.5,
+                            length: node.length*0.7,
+                            depth: node.depth+1
+                        });
+                        stack.push({
+                            x: node.x + Math.cos(node.angle)*node.length,
+                            y: node.y + Math.sin(node.angle)*node.length,
+                            z: node.z,
+                            angle: node.angle + 0.5 + Math.random()*0.5,
+                            length: node.length*0.7,
+                            depth: node.depth+1
+                        });
+                    }
+                }
+            },
+
+            // 19. SUPERNOVA SHELL
+            SUPERNOVA: (arr) => {
+                for(let i=0; i<COUNT; i++){
+                    const phi = Math.acos(-1 + (2*i)/COUNT);
+                    const theta = Math.sqrt(COUNT * Math.PI) * phi;
+                    
+                    // Disturbance
+                    const noise = Math.random() * 20;
+                    const r = 100 + noise + Math.sin(phi*10)*10;
+                    
+                    arr[i*3] = r * Math.cos(theta) * Math.sin(phi);
+                    arr[i*3+1] = r * Math.sin(theta) * Math.sin(phi);
+                    arr[i*3+2] = r * Math.cos(phi);
+                }
+            },
+
+            // 20. DNA_DATABASE (Multiple Helixes)
+            DNA_CLUSTER: (arr) => {
+                for(let i=0; i<COUNT; i++){
+                    const which = i % 3; // 3 strands
+                    const t = (i/COUNT);
+                    const angle = t * Math.PI * 2 * 4 + (which * Math.PI * 2 / 3);
+                    const y = (t - 0.5) * 300;
+                    const r = 60;
+                    
+                    arr[i*3] = Math.cos(angle)*r;
+                    arr[i*3+1] = y;
+                    arr[i*3+2] = Math.sin(angle)*r;
+                }
+            },
+
+            // --- GEOMETRIC ABSTRACT ---
+
+            // 21. TORUS (Solid)
+            TORUS: (arr) => {
+                const R=100, r=30;
+                for(let i=0; i<COUNT; i++){
+                    const u = Math.random() * Math.PI * 2;
+                    const v = Math.random() * Math.PI * 2;
+                    arr[i*3] = (R+r*Math.cos(v))*Math.cos(u);
+                    arr[i*3+1] = (R+r*Math.cos(v))*Math.sin(u);
+                    arr[i*3+2] = r*Math.sin(v);
+                }
+            },
+
+            // 22. CONE_HELIX
+            CONE_HELIX: (arr) => {
+                const height = 300;
+                const turns = 6;
+                for(let i=0; i<COUNT; i++){
+                    const t = (i/COUNT);
+                    const angle = t * Math.PI * 2 * turns;
+                    const y = t * height - height/2;
+                    const r = t * 80; // Radius grows with height
+                    
+                    arr[i*3] = Math.cos(angle)*r;
+                    arr[i*3+1] = y;
+                    arr[i*3+2] = Math.sin(angle)*r;
+                }
+            },
+
+            // 23. SPHERE_LATTICE (Hollow)
+            SPHERE_CAGE: (arr) => {
+                const r = 100;
+                let idx = 0;
+                // Latitude lines
+                for(let lat=0; lat<10; lat++){
+                    const phi = (lat/10) * Math.PI;
+                    const ringR = r * Math.sin(phi);
+                    const y = r * Math.cos(phi);
+                    for(let p=0; p<COUNT/20; p++){
+                        if(idx>=COUNT) break;
+                        const theta = (p/(COUNT/20))*Math.PI*2;
+                        arr[idx*3] = ringR*Math.cos(theta);
+                        arr[idx*3+1] = y;
+                        arr[idx*3+2] = ringR*Math.sin(theta);
+                        idx++;
+                    }
+                }
+            },
+
+            // 24. HYPER_PARABOLOID
+            HYPER_PARABOLOID: (arr) => {
+                const size=100;
+                for(let i=0; i<COUNT; i++){
+                    const x = (Math.random()-0.5)*size;
+                    const z = (Math.random()-0.5)*size;
+                    // Hyperbolic equation: y = x^2 - z^2
+                    const y = (Math.pow(x, 2) - Math.pow(z, 2)) / 50;
+                    arr[i*3]=x; arr[i*3+1]=y; arr[i*3+2]=z;
+                }
+            },
+
+            // 25. CUBE_FRAME
+            CUBE_FRAME: (arr) => {
+                const s=100;
+                // Edges of a cube
+                const edges = [
+                    [-s,-s,-s], [s,-s,-s], [s,s,-s], [-s,s,-s], // Back face
+                    [-s,-s,s], [s,-s,s], [s,s,s], [-s,s,s]      // Front face
+                ];
+                for(let i=0; i<COUNT; i++){
+                    const e = edges[i%8];
+                    arr[i*3] = e[0] + (Math.random()-0.5)*20;
+                    arr[i*3+1] = e[1] + (Math.random()-0.5)*20;
+                    arr[i*3+2] = e[2] + (Math.random()-0.5)*20;
+                }
+            },
+
+            // 26. CRYSTAL_SHARD
+            CRYSTAL: (arr) => {
+                for(let i=0; i<COUNT; i++){
+                    const h = Math.pow(Math.random(), 2) * 200; // Bias towards bottom
+                    const angle = Math.random() * Math.PI * 2;
+                    const r = (1 - h/200) * 40; // Taper
+                    
+                    arr[i*3] = Math.cos(angle)*r;
+                    arr[i*3+1] = h - 100;
+                    arr[i*3+2] = Math.sin(angle)*r;
+                }
+            },
+
+            // 27. ASTEROID_BELT
+            ASTEROID_BELT: (arr) => {
+                const R = 150;
+                for(let i=0; i<COUNT; i++){
+                    const angle = (i/COUNT) * Math.PI * 2 * 1.2; // Spiral
+                    const spread = (Math.random()-0.5) * 60;
+                    const z = (Math.random()-0.5) * 20;
+                    
+                    arr[i*3] = Math.cos(angle) * R + spread;
+                    arr[i*3+1] = Math.sin(angle) * R + spread;
+                    arr[i*3+2] = z;
+                }
+            },
+
+            // 28. TORNADO (Particle Swirl)
+            TORNADO: (arr) => {
+                for(let i=0; i<COUNT; i++){
+                    const t = (i/COUNT);
+                    const angle = t * Math.PI * 2 * 8;
+                    const r = t * 80 + 10; // Widens up
+                    const y = t * 300 - 150;
+                    
+                    arr[i*3] = Math.cos(angle)*r + (Math.random()-0.5)*10;
+                    arr[i*3+1] = y;
+                    arr[i*3+2] = Math.sin(angle)*r + (Math.random()-0.5)*10;
+                }
+            },
+
+            // 29. ANTENNA_ARRAY
+            ANTENNA_ARRAY: (arr) => {
+                const grid = 10;
+                const spacing = 20;
+                let idx=0;
+                for(let x=-grid; x<=grid; x++){
+                    for(let z=-grid; z<=grid; z++){
+                        if(idx >= COUNT) break;
+                        const height = Math.random() * 100;
+                        for(let k=0; k<3; k++){ // Make vertical lines
+                            arr[idx*3] = x*spacing;
+                            arr[idx*3+1] = (k/3)*height - 50;
+                            arr[idx*3+2] = z*spacing;
+                            idx++;
+                        }
+                    }
+                }
+            },
+
+            // 30. QUANTUM_TUNNEL (Ring Sequence)
+            QUANTUM_TUNNEL: (arr) => {
+                for(let i=0; i<COUNT; i++){
+                    const z = (i/COUNT) * 500 - 250;
+                    const ring = Math.floor(z/20);
+                    const angle = Math.random() * Math.PI * 2;
+                    const r = 50 + Math.sin(ring*0.5)*20; // Pulsating radius
+                    
+                    arr[i*3] = Math.cos(angle)*r;
+                    arr[i*3+1] = Math.sin(angle)*r;
+                    arr[i*3+2] = z;
+                }
+            },
+            
+            // 31. DISRUPTOR_WAVE
+            DISRUPTOR: (arr) => {
+                for(let i=0; i<COUNT; i++){
+                   const x = (Math.random()-0.5)*300;
+                   const z = (Math.random()-0.5)*300;
+                   const dist = Math.sqrt(x*x+z*z);
+                   // Interference pattern
+                   const y = Math.sin(dist*0.1) * 20 * Math.exp(-dist*0.01);
+                   arr[i*3]=x; arr[i*3+1]=y; arr[i*3+2]=z;
+                }
+            },
+            
+            // 32. BIO_CELL (Organic)
+            BIO_CELL: (arr) => {
+                const phi = Math.PI * (3 - Math.sqrt(5)); // Golden angle
+                for(let i=0; i<COUNT; i++){
+                    const y = 1 - (i / (COUNT - 1)) * 2; // y goes from 1 to -1
+                    const radius = Math.sqrt(1 - y * y); // radius at y
+                    const theta = phi * i; // golden angle increment
+                    
+                    const r=100 + Math.random()*10;
+                    
+                    arr[i*3] = Math.cos(theta) * radius * r;
+                    arr[i*3+1] = y * r;
+                    arr[i*3+2] = Math.sin(theta) * radius * r;
+                }
+            },
+
+            // 33. SOLAR_FLARE
+            SOLAR_FLARE: (arr) => {
+                // Core
+                for(let i=0; i<COUNT; i++){
+                    const theta = Math.random() * Math.PI * 2;
+                    const phi = Math.acos(2 * Math.random() - 1);
+                    const r = 50 + Math.random() * 10;
+                    
+                    // Flares
+                    if(Math.random() > 0.9) {
+                       const flareLength = Math.random() * 100;
+                       arr[i*3] = r * Math.cos(theta) * Math.sin(phi) * (1+flareLength/r);
+                       arr[i*3+1] = r * Math.sin(theta) * Math.sin(phi) * (1+flareLength/r);
+                       arr[i*3+2] = r * Math.cos(phi) * (1+flareLength/r);
                     } else {
-                        // Standard oscillating grid position
-                        arr[i*3] = x + Math.sin(y*0.1) * 5;
-                        arr[i*3+1] = y + Math.cos(z*0.1) * 5;
-                        arr[i*3+2] = z + Math.sin(x*0.1) * 5;
+                       arr[i*3] = r * Math.cos(theta) * Math.sin(phi);
+                       arr[i*3+1] = r * Math.sin(theta) * Math.sin(phi);
+                       arr[i*3+2] = r * Math.cos(phi);
                     }
-                    i++;
+                }
+            },
+
+            // 34. TURBINE_ENGINE
+            TURBINE: (arr) => {
+                const blades = 12;
+                for(let i=0; i<COUNT; i++){
+                    const blade = i % blades;
+                    const t = (i/COUNT);
+                    const angle = blade * (Math.PI*2/blades) + t * 0.5; // Twist
+                    const r = 20 + t * 80; // Radius
+                    const z = (Math.random()-0.5) * 20; // Thickness
+                    
+                    arr[i*3] = Math.cos(angle)*r;
+                    arr[i*3+1] = Math.sin(angle)*r;
+                    arr[i*3+2] = z;
+                }
+            },
+
+            // 35. NULL_VOID (Error Glitch)
+            NULL_VOID: (arr) => {
+                // Random noise in a box
+                for(let i=0; i<COUNT; i++){
+                    arr[i*3] = (Math.random()-0.5) * 300;
+                    arr[i*3+1] = (Math.random()-0.5) * 300;
+                    arr[i*3+2] = (Math.random()-0.5) * 300;
                 }
             }
-        }
-        // Fill remaining if grid was too small
-        while(i < COUNT) {
-            arr[i*3] = (Math.random()-0.5)*300;
-            arr[i*3+1] = (Math.random()-0.5)*300;
-            arr[i*3+2] = (Math.random()-0.5)*300;
-            i++;
-        }
-    },
-        AURORA_RING: (arr) => {
-        const height = 300;
-        const radius = 100;
-        
-        for(let i=0; i<COUNT; i++) {
-            const t = i / COUNT;
-            const angle = t * Math.PI * 16; // Multiple twists
-            
-            // Y goes from bottom to top
-            const y = (t - 0.5) * height;
-            
-            // Radius breathes and waves based on height and angle
-            const wave = Math.sin(y * 0.05 + angle * 2) * 30;
-            const r = radius + wave + (Math.random() - 0.5) * 10;
-            
-            // Twist the ribbon
-            const x = Math.cos(angle) * r;
-            const z = Math.sin(angle) * r;
+        };
 
-            arr[i*3] = x;
-            arr[i*3+1] = y;
-            arr[i*3+2] = z;
-        }
-    },
-        HYPERSPHERE: (arr) => {
-        const goldenRatio = (1 + Math.sqrt(5)) / 2;
+        // -----------------------------------------------------------
+        // TRANSITION ENGINE (Fixed & Randomized)
+        // -----------------------------------------------------------
         
-        for(let i=0; i<COUNT; i++) {
-            // Fibonacci Sphere distribution
-            const theta = 2 * Math.PI * i / goldenRatio;
-            const phi = Math.acos(1 - 2 * (i + 0.5) / COUNT);
-            
-            let x = Math.sin(phi) * Math.cos(theta);
-            let y = Math.sin(phi) * Math.sin(theta);
-            let z = Math.cos(phi);
-            
-            // Vortex Rotation: Rotate around Y axis based on Y position
-            // Top particles rotate one way, bottom the other
-            const rotSpeed = 3.0; 
-            const rotAngle = y * rotSpeed;
-            
-            const x_rot = x * Math.cos(rotAngle) - z * Math.sin(rotAngle);
-            const z_rot = x * Math.sin(rotAngle) + z * Math.cos(rotAngle);
-            
-            const r = 100;
-            
-            arr[i*3] = x_rot * r;
-            arr[i*3+1] = y * r;
-            arr[i*3+2] = z_rot * r;
-        }
-    },
-       
-        INTERFERENCE_GRID: (arr) => {
-        const size = 300;
-        const step = 4;
-        
-        let idx = 0;
-        for(let x = -size; x <= size; x += step) {
-            for(let z = -size; z <= size; z += step) {
-                if(idx >= COUNT) break;
-                
-                // Interference Math
-                const dist = Math.sqrt(x*x + z*z);
-                const wave1 = Math.sin(dist * 0.05) * 30;
-                const wave2 = Math.sin(x * 0.05) * Math.cos(z * 0.05) * 40;
-                
-                const y = wave1 + wave2;
-                
-                arr[idx*3] = x;
-                arr[idx*3+1] = y;
-                arr[idx*3+2] = z;
-                idx++;
-            }
-        }
-        // Fill rest randomly if needed
-        while(idx < COUNT) {
-            arr[idx*3] = (Math.random()-0.5)*600;
-            arr[idx*3+1] = (Math.random()-0.5)*100;
-            arr[idx*3+2] = (Math.random()-0.5)*600;
-            idx++;
-        }
-    },
-        RIBBON_SPIRAL: (arr) => {
-        const height = 400;
-        
-        for(let i=0; i<COUNT; i++) {
-            const t = (i / COUNT);
-            const angle = t * Math.PI * 10;
-            
-            // Main helix spine
-            const spineX = Math.cos(angle) * 60;
-            const spineZ = Math.sin(angle) * 60;
-            const spineY = (t - 0.5) * height;
-            
-            // Ribbon width/offset
-            // We use the angle to determine the "normal" direction of the ribbon
-            const width = 40;
-            const w = (Math.random() - 0.5) * width;
-            
-            // Simple twist: Offset X and Z based on a second angle
-            const twist = angle + Math.PI/2;
-            
-            arr[i*3] = spineX + Math.cos(twist) * w;
-            arr[i*3+1] = spineY + (Math.random()-0.5)*10; // Slight thickness
-            arr[i*3+2] = spineZ + Math.sin(twist) * w;
-        }
-    },
-        MAGNETIC_SWARM: (arr) => {
-        const poleDist = 100;
-        // Pole 1 and Pole 2 positions
-        const p1 = {x: 0, y: poleDist, z: 0};
-        const p2 = {x: 0, y: -poleDist, z: 0};
-
-        for(let i=0; i<COUNT; i++) {
-            // Pick a pole to orbit
-            const pole = (i % 2 === 0) ? p1 : p2;
-            
-            // Create a ring around the pole
-            const theta = Math.random() * Math.PI * 2;
-            const r = 40 + Math.random() * 60;
-            
-            // Orbit plane (perpendicular to Y axis)
-            const x = pole.x + Math.cos(theta) * r;
-            const z = pole.z + Math.sin(theta) * r;
-            const y = pole.y + (Math.random() - 0.5) * 20; // Disc height
-            
-            // Add "swarm" jitter
-            arr[i*3] = x + (Math.random()-0.5)*10;
-            arr[i*3+1] = y + (Math.random()-0.5)*10;
-            arr[i*3+2] = z + (Math.random()-0.5)*10;
-        }
-    },
-        ELECTROSTATIC_NET: (arr) => {
-        const nodes = [];
-        // Create 8 random nodes
-        for(let j=0; j<8; j++) {
-            nodes.push({
-                x: (Math.random()-0.5)*200,
-                y: (Math.random()-0.5)*200,
-                z: (Math.random()-0.5)*200
-            });
-        }
-
-        for(let i=0; i<COUNT; i++) {
-            // Connect nodes: Pick two random nodes
-            const n1 = nodes[Math.floor(Math.random() * nodes.length)];
-            const n2 = nodes[Math.floor(Math.random() * nodes.length)];
-            
-            // Interpolate a position between them (the "strand")
-            const t = Math.random();
-            
-            // Add "static cling" jitter - particles stick close to the line
-            const jitter = 5;
-            
-            arr[i*3] = (n1.x + (n2.x - n1.x) * t) + (Math.random()-0.5)*jitter;
-            arr[i*3+1] = (n1.y + (n2.y - n1.y) * t) + (Math.random()-0.5)*jitter;
-            arr[i*3+2] = (n1.z + (n2.z - n1.z) * t) + (Math.random()-0.5)*jitter;
-        }
-    },
-    
-    // 5. VORTEX (Black Hole style)
-    VORTEX: (arr) => {
-        for(let i=0; i<COUNT; i++) {
-            const t = i / COUNT; // 0 to 1
-            const angle = t * Math.PI * 40; // Tight spiral
-            const radius = 10 + (t * 150); // Expanding radius
-            
-            arr[i*3] = Math.cos(angle) * radius;
-            arr[i*3+1] = (Math.random() - 0.5) * 200; // Vertical spread
-            arr[i*3+2] = Math.sin(angle) * radius;
-        }
-    }
-};
         
         let currentFormKey = 0;
         const formKeys = Object.keys(FORMS);
         let mouse = new THREE.Vector2();
 
-        function initApexBackground() {
-    // -----------------------------------------------------------
-    // 1. CHECK IF LIBRARY LOADED (Extension Fix)
-    // -----------------------------------------------------------
-    if (typeof THREE === 'undefined') {
-        console.error("SYSTEM ERROR: THREE.js is not defined.");
-        console.log("SOLUTION: Did you download 'three.min.js' locally and add the <script> tag in HTML?");
-        
-        // Visual feedback on the button
-        const btn = document.getElementById('toggleExtBgBtn');
-        if (btn) {
-            btn.innerText = "ERROR: MISSING LIBRARY";
-            btn.style.borderColor = "red";
-            btn.style.color = "red";
+    function initApexBackground() {
+            // 1. CHECK LIBRARY
+            if (typeof THREE === 'undefined') {
+                console.error("SYSTEM ERROR: THREE.js is not defined.");
+                const btn = document.getElementById('toggleExtBgBtn');
+                if (btn) {
+                    btn.innerText = "ERROR: MISSING LIBRARY";
+                    btn.style.borderColor = "red";
+                    btn.style.color = "red";
+                }
+                return;
+            }
+
+            try {
+                // 2. SETUP SCENE
+                scene = new THREE.Scene();
+                scene.fog = new THREE.FogExp2(0x000000, 0.002);
+
+                camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 2000);
+                camera.position.z = 300;
+
+                const threeContainer = document.getElementById('three-container');
+                if (!threeContainer) return;
+
+                renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setPixelRatio(window.devicePixelRatio);
+                
+                threeContainer.innerHTML = ''; 
+                threeContainer.appendChild(renderer.domElement);
+
+                // 3. CREATE PARTICLES
+                // Ensure we don't redeclare COUNT if it's already global, 
+                // but here we assume it's local to this scope for safety.
+                const localCOUNT = 60000; 
+                
+                const geo = new THREE.BufferGeometry();
+                const pos = new Float32Array(localCOUNT * 3);
+                const colors = new Float32Array(localCOUNT * 3);
+
+                // Initialize Positions AND Targets to a Sphere
+                for (let i = 0; i < localCOUNT; i++) {
+                    const mix = Math.random();
+                    colors[i * 3] = 0.05;
+                    colors[i * 3 + 1] = mix * 0.8;
+                    colors[i * 3 + 2] = 1.0;
+
+                    // Initial Shape (Sphere)
+                    const r = 120;
+                    const phi = Math.acos(-1 + (2 * i) / localCOUNT);
+                    const theta = Math.sqrt(localCOUNT * Math.PI) * phi;
+                    
+                    const x = r * Math.cos(theta) * Math.sin(phi);
+                    const y = r * Math.sin(theta) * Math.sin(phi);
+                    const z = r * Math.cos(phi);
+
+                    pos[i * 3] = x;
+                    pos[i * 3 + 1] = y;
+                    pos[i * 3 + 2] = z;
+
+                    // FIX: Initialize Targets so particles don't collapse to 0
+                    targets[i * 3] = x;
+                    targets[i * 3 + 1] = y;
+                    targets[i * 3 + 2] = z;
+                }
+
+                geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+                geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+                const mat = new THREE.PointsMaterial({
+                    size: 0.8,
+                    vertexColors: true,
+                    transparent: true,
+                    opacity: 0.6,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false
+                });
+
+                points = new THREE.Points(geo, mat);
+                scene.add(points);
+
+                // Start Animation
+                animateApex();
+                
+                // Start Morphing Loop
+                window.formInterval = setInterval(morphNextForm, 6000); // Slightly longer interval
+
+                // FIX: Trigger the first morph immediately so user sees action
+                setTimeout(morphNextForm, 1000); 
+
+            } catch (error) {
+                console.error("WebGL Error:", error);
+            }
         }
-        return; // Stop execution
-    }
-
-    try {
-        // -----------------------------------------------------------
-        // 2. SETUP SCENE
-        // -----------------------------------------------------------
-        scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x000000, 0.002);
-
-        camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 1, 2000);
-        camera.position.z = 300;
-
-        // Ensure renderer has a container
-        const threeContainer = document.getElementById('three-container');
-        if(!threeContainer) return;
-
-        renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        
-        // Clear previous canvas if exists (prevents duplicate canvases)
-        threeContainer.innerHTML = ''; 
-        threeContainer.appendChild(renderer.domElement);
-
-        // -----------------------------------------------------------
-        // 3. CREATE PARTICLES
-        // -----------------------------------------------------------
-        const COUNT = 60000;
-        const geo = new THREE.BufferGeometry();
-        const pos = new Float32Array(COUNT * 3);
-        const colors = new Float32Array(COUNT * 3);
-
-        for(let i=0; i<COUNT; i++) {
-            const mix = Math.random();
-            colors[i*3] = 0.05;     // R
-            colors[i*3+1] = mix * 0.8; // G
-            colors[i*3+2] = 1.0;     // B
-            
-            // Initial Sphere Shape
-            const r = 120;
-            const phi = Math.acos(-1 + (2 * i) / COUNT);
-            const theta = Math.sqrt(COUNT * Math.PI) * phi;
-            pos[i*3] = r * Math.cos(theta) * Math.sin(phi);
-            pos[i*3+1] = r * Math.sin(theta) * Math.sin(phi);
-            pos[i*3+2] = r * Math.cos(phi);
-        }
-
-        geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-        geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-        const mat = new THREE.PointsMaterial({
-            size: 0.8, 
-            vertexColors: true, 
-            transparent: true,
-            opacity: 0.6, 
-            blending: THREE.AdditiveBlending, 
-            depthWrite: false
-        });
-
-        points = new THREE.Points(geo, mat);
-        scene.add(points);
-
-        // Start Animation
-        animateApex();
-        window.formInterval = setInterval(morphNextForm, 5000);
-
-    } catch (error) {
-        console.error("WebGL Error:", error);
-        const btn = document.getElementById('toggleExtBgBtn');
-        if(btn) btn.innerText = "WEBGL ERROR";
-    }
-}
 
         function animateApex() {
             if (!isApexActive) return;
             animationFrameId = requestAnimationFrame(animateApex);
-            
+
             const positions = points.geometry.attributes.position.array;
 
-            for(let i=0; i<positions.length; i+=3) {
-                positions[i] += (targets[i] - positions[i]) * 0.08;
-                positions[i+1] += (targets[i+1] - positions[i+1]) * 0.08;
-                positions[i+2] += (targets[i+2] - positions[i+2]) * 0.08;
+            for (let i = 0; i < positions.length; i += 3) {
+                // Lerp to target
+                positions[i] += (targets[i] - positions[i]) * 0.05; // Slower lerp (0.05)
+                positions[i + 1] += (targets[i + 1] - positions[i + 1]) * 0.05;
+                positions[i + 2] += (targets[i + 2] - positions[i + 2]) * 0.05;
 
+                // Mouse Interaction
                 const dx = mouse.x - positions[i];
-                const dy = mouse.y - positions[i+1];
-                const d = Math.sqrt(dx*dx + dy*dy);
-                if(d < 100) {
-                    positions[i] += dx * 0.01;
-                    positions[i+1] += dy * 0.01;
+                const dy = mouse.y - positions[i + 1];
+                const d = Math.sqrt(dx * dx + dy * dy);
+                if (d < 100) {
+                    positions[i] += dx * 0.02; // Stronger push
+                    positions[i + 1] += dy * 0.02;
                 }
             }
-            
+
             points.geometry.attributes.position.needsUpdate = true;
-            points.rotation.y += 0.005;
+            points.rotation.y += 0.002; // Auto rotate
             renderer.render(scene, camera);
         }
 
-        function morphNextForm() {
-    // 1. PICK A RANDOM TRANSITION TYPE
-    // 'EXPLODE': Scatter to random chaos
-    // 'IMPLODE': Collapse to a single point (0,0,0)
-    // 'FLATTEN': Collapse to a flat disc
-    const modes = ['EXPLODE', 'IMPLODE', 'FLATTEN','HELIX_SPIN'];
-    const mode = modes[Math.floor(Math.random() * modes.length)];
+    function morphNextForm() {
+            // 1. SAFETY CHECK
+            if (!targets || !FORMS) return;
 
-    // 2. APPLY THE INTERIM STATE (The "Glitch")
-    for(let i=0; i<COUNT*3; i++) {
-        if(mode === 'EXPLODE') {
-            // Scatters randomly far away
-            targets[i] = (Math.random() - 0.5) * 1500;
-        } 
-        else if (mode === 'IMPLODE') {
-            // Collapses to center (0,0,0) with slight noise
-            targets[i] = (Math.random() - 0.5) * 5;
-        }
-        else if (mode === 'FLATTEN') {
-            // Collapses to Z=0 plane, but keeps X/Y spread
-            const axis = i % 3; // 0=x, 1=y, 2=z
-            if(axis === 2) {
-                targets[i] = 0; // Flatten Z
-            } else {
-                targets[i] = (Math.random() - 0.5) * 400; // Spread X/Y
+            // 2. EXPLODE (Scatter particles)
+            for (let i = 0; i < COUNT * 3; i += 3) {
+                targets[i] = (Math.random() - 0.5) * 800;   // Wider explosion
+                targets[i + 1] = (Math.random() - 0.5) * 800;
+                targets[i + 2] = (Math.random() - 0.5) * 800;
             }
-        }
-        else if (mode === 'HELIX_SPIN') {
-            // Spiral rapidly around Y axis
-            const angle = (i / COUNT) * Math.PI * 20; // Tight spiral
-            const r = 200 + Math.random() * 50;
-            targets[i] = Math.cos(angle) * r;
-            targets[i+1] = (Math.random() - 0.5) * 600; // Tall vertical spread
-            targets[i+2] = Math.sin(angle) * r;
-        }
-    }
 
-    // 3. WAIT FOR TRANSITION TO COMPLETE (600ms)
-    setTimeout(() => {
-        
-        // 4. SELECT THE NEW FINAL SHAPE
-        const formKey = formKeys[currentFormKey];
-        
-        // Generate the math for the new shape
-        if(FORMS[formKey]) {
-            FORMS[formKey](targets);
-        }
+            // 3. WAIT, THEN COALESCE INTO NEW SHAPE
+            setTimeout(() => {
+                const keys = Object.keys(FORMS);
+                const randomKey = keys[Math.floor(Math.random() * keys.length)];
 
-        // Advance to the next shape for the future loop
-        currentFormKey = (currentFormKey + 1) % formKeys.length;
-        
-    }, 600); 
-}
+                if (FORMS[randomKey]) {
+                    FORMS[randomKey](targets);
+                    console.log(`Morphing to: ${randomKey}`);
+                }
+            }, 600);
+        }
 
         function stopApexBackground() {
             isApexActive = false;
