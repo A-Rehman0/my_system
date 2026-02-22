@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Solo Leveling By AT",
+  "version": "1.0",
+  "description": "Custom new tab with Three.js visuals and weather data",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "storage",
+    "geolocation"
+  ],
+  "host_permissions": [
+    "https://api.open-meteo.com/*",
+    "https://api.bigdatacloud.net/*"
+  ]
+}

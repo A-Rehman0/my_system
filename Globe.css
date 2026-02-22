@@ -1,0 +1,33 @@
+:root {
+    --color-primary: #00f3ff;
+    --bg-dark: #050a14;
+    
+}
+
+* { box-sizing: border-box;  }
+
+body {
+    background-color: var(--bg-dark);
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    user-select: none;
+    
+}
+
+/* --- Main Canvas --- */
+canvas#core-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    
+}
+@keyframes electricHum {
+    0% { opacity: 0.5; box-shadow: 0 0 10px #9d4edd; }
+    50% { opacity: 1; box-shadow: 0 0 20px #9d4edd, 0 0 5px #fff; }
+    100% { opacity: 0.5; box-shadow: 0 0 10px #9d4edd; }
+}
